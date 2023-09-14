@@ -34,4 +34,15 @@ public class TransferPage {
     public void findErrorMessage (String expectedText) {
         errorMassage.shouldHave(exactText(expectedText), Duration.ofSeconds(15)).shouldBe(visible);
     }
+
+    public void makeTransfer(String amountToTransfer, String cardNumber) {
+        amountInputNew.setValue(amountToTransfer);
+        fromInput.setValue(cardNumber);
+        transferButton.click();
+    }
+
+    public DashboardPage makeValidTransfer (String amountToTransfer, String cardNumber) {
+        makeTransfer(amountToTransfer, cardNumber);
+        return new DashboardPage();
+    }
 }

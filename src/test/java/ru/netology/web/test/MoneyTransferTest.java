@@ -23,7 +23,7 @@ class MoneyTransferTest {
     }
 
     @Test
-    void shouldTransferFromFirstToSecond () {
+    void shouldTransferFromFirstToSecond() {
         var firstCardInfo = getFirstCardInfo();
         var secondCardInfo = getSecondCardInfo();
         var firstCardBalance = dashboardPage.getCardBalance(firstCardInfo);
@@ -40,7 +40,7 @@ class MoneyTransferTest {
     }
 
     @Test
-    void shouldTransferFromSecondToFirst () {
+    void shouldTransferFromSecondToFirst() {
         var firstCardInfo = getFirstCardInfo();
         var secondCardInfo = getSecondCardInfo();
         var firstCardBalance = dashboardPage.getCardBalance(firstCardInfo);
@@ -56,19 +56,19 @@ class MoneyTransferTest {
         assertEquals(expectedBalanceSecondCard, actualBalanceSecondCard);
     }
 
-//    @Test
-//    void ShouldNotTransferWithInvalidAmount () {
-//        var firstCardInfo = getFirstCardInfo();
-//        var secondCardInfo = getSecondCardInfo();
-//        var firstCardBalance = dashboardPage.getCardBalance(firstCardInfo);
-//        var secondCardBalance = dashboardPage.getCardBalance(secondCardInfo);
-//        var amount = generateInvalidAmount(firstCardBalance);
-//        var transferPage = dashboardPage.selectCardToTransfer(secondCardInfo);
-//        transferPage.makeTransfer(String.valueOf(amount), firstCardInfo);
-//        transferPage.findErrorMessage("Недостаточно средств на карте");
-//        var actualBalanceFirstCard = dashboardPage.getCardBalance(firstCardInfo);
-//        var actualBalanceSecondCard = dashboardPage.getCardBalance(secondCardInfo);
-//        assertEquals(firstCardBalance, actualBalanceFirstCard);
-//        assertEquals(secondCardBalance, actualBalanceSecondCard);
-//    }
+    @Test
+    void ShouldNotTransferWithInvalidAmount() {
+        var firstCardInfo = getFirstCardInfo();
+        var secondCardInfo = getSecondCardInfo();
+        var firstCardBalance = dashboardPage.getCardBalance(firstCardInfo);
+        var secondCardBalance = dashboardPage.getCardBalance(secondCardInfo);
+        var amount = generateInvalidAmount(firstCardBalance);
+        var transferPage = dashboardPage.selectCardToTransfer(secondCardInfo);
+        transferPage.makeTransfer(String.valueOf(amount), firstCardInfo);
+        transferPage.findErrorMessage("Недостаточно средств на карте");
+        var actualBalanceFirstCard = dashboardPage.getCardBalance(firstCardInfo);
+        var actualBalanceSecondCard = dashboardPage.getCardBalance(secondCardInfo);
+        assertEquals(firstCardBalance, actualBalanceFirstCard);
+        assertEquals(secondCardBalance, actualBalanceSecondCard);
+    }
 }

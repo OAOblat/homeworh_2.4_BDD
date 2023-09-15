@@ -12,22 +12,13 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class DashboardPage {
     private final SelenideElement heading = $("[data-test-id=dashboard]");
-    private final ElementsCollection cards = $$(".list__item");
+    private final ElementsCollection cards = $$(".list__item div");
     private final String balanceStart = "баланс: ";
     private final String balanceFinish = " р.";
 
 
     public DashboardPage() {
         heading.shouldBe(visible);
-    }
-
-    public void verifyIsDashboardPage(){
-        heading.shouldBe(visible);
-    }
-
-    public int getCardBalance(int index) {
-        var text = cards.get(index).getText();
-        return extractBalance(text);
     }
     public int getCardBalance(DataHelper.CardInfo cardInfo) {
         val text = cards.findBy(attribute("data-test-id", cardInfo.getTestId())).getText();
@@ -43,11 +34,6 @@ public class DashboardPage {
 
     public TransferPage selectCardToTransfer (DataHelper.CardInfo cardInfo) {
         cards.findBy(attribute("data-test-id", cardInfo.getTestId())).$("button").click();
-        return new TransferPage();
-    }
-
-    public TransferPage selectCardToTransfer (int index) {
-        cards.get(index).$("button").click();
         return new TransferPage();
     }
 
